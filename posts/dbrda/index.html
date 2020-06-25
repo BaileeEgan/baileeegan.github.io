@@ -1,41 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>db-RDA & PCoA Bi-Plots in R</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Atom Feed" />
+  		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
+		
+		<script type="text/javascript" src="/theme/js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="/theme/js/theme.js"></script>
+		
+		<title>Bailee Egan - db-RDA & PCoA Bi-Plots in R</title>
+		<meta charset="utf-8" />
+		<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Full Atom Feed" />
+		<link href="/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="R" />
+
 </head>
 
 <body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">Bailee Egan </a></h1>
-                <nav><ul>
-                    <li><a href="/pages/about.html">About</a></li>
-                    <li><a href="/pages/research.html">Research</a></li>
-                    <li class="active"><a href="/category/tutorials.html">Tutorials</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+		<div id = "menu">
+			<header id="banner" class="body">
+				<a href="/">Bailee Egan</a>
+			</header><!-- /#banner -->
+			<div id = "about_side">
+				Masters Student
+				<br />University of Nebraska-Licoln
+				<br />School of Biological Sciences
+				<p />
+				Email: <i>began2@huskers.unl.edu</i>
+				<p />
+				<a href="https://github.com/BaileeEgan" target="_blank"><img width="20" height="20" src = '/theme/images/GitHub-Mark-Light-32px.png'/></a>
+			</div>
+
+			<p><h3>RESEARCH</h3></p>p
+			<ul>
+						<li><a href="/pages/about/">About</a></li>
+						<li><a href="/pages/research/">Research</a></li>
+						<li class="active"><a href="/category/tutorials.html">Tutorials</a></li>
+			</ul>
+
+			<p><h3>ART</h3></p>
+			<ul>
+				<li><a href="/pages/painting/">Painting</a></li>
+				<li><a href="/pages/illustration/">Illustration</a></li>
+			</ul>
+
+			
+			<div class="body" id = "footer_block">
+					<address id="about" class="vcard body">
+					Powered by <a href="http://getpelican.com/">Pelican</a> and <a href="http://python.org">Python</a>.
+					</address><!-- /#about -->
+			</div><!-- /#contentinfo -->
+		</div>
+		<div id = "wrapper">
+			<div id = "main_content">
 <section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="/dbrda.html" rel="bookmark"
-           title="Permalink to db-RDA & PCoA Bi-Plots in R">db-RDA & PCoA Bi-Plots in R</a></h1>
-    </header>
-
-    <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2019-06-19T00:00:00-05:00">
-                Published: Wed 19 June 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/bailee-egan.html">Bailee Egan</a>
-        </address>
-<p>In <a href="/category/tutorials.html">Tutorials</a>.</p>
-<p>tags: <a href="/tag/r.html">R</a> </p>
-</footer><!-- /.post-info -->      <p>Redundancy analysis (RDA) calculates to show the amount of variation within a dataset attributed to a set of explanatory variables. Distance-based RDA (db-RDA) does the same thing, but with variation from a non-euclidean distance-based method (such as Bray-Curtis, Jaccard). It is important to note that RDA and db-RDA assumes a linear relationship between variation and an explanatory variable.</p>
+  <header>
+    <h2 class="entry-title">
+      <a href="/posts/dbrda/" rel="bookmark"
+         title="Permalink to db-RDA & PCoA Bi-Plots in R">db-RDA & PCoA Bi-Plots in R</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2019-06-19T00:00:00-04:00">
+      Wed 19 June 2019
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="/author/bailee-egan.html">Bailee Egan</a>
+    </address>
+    <div class="category">
+        Category: <a href="/category/tutorials.html">Tutorials</a>
+    </div>
+    <div class="tags">
+        Tags:
+            <a href="/tag/r.html">R</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Redundancy analysis (RDA) calculates to show the amount of variation within a dataset attributed to a set of explanatory variables. Distance-based RDA (db-RDA) does the same thing, but with variation from a non-euclidean distance-based method (such as Bray-Curtis, Jaccard). It is important to note that RDA and db-RDA assumes a linear relationship between variation and an explanatory variable.</p>
 <p>Here in this tutorial, I will show you two methods of performing db-RDA and generating PCoA Bi-plots in R using ggplots2.</p>
 <h3>Required libraries</h3>
 <p>First, we need to load the following packages. Install them if you do not have them.</p>
@@ -151,38 +195,10 @@
 
 
 <p><img alt="center" src="/figures/biplots/gg.envfit-1.png"></p>
-    </div><!-- /.entry-content -->
-
-  </article>
+  </div><!-- /.entry-content -->
 </section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
+			</div>
+		</div>
 </body>
+
 </html>
