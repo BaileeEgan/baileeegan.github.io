@@ -1,0 +1,162 @@
+html{
+}
+
+body {
+  font-family: 'Roboto Condensed', Helvetica, sans-serif;
+  font-size: 100%;
+  background: white;
+  margin: 0;
+  padding: 0;
+}
+
+#banner {
+	color: #f7e6c1;
+	display: block;
+	padding: 1em;
+	font-size: 1.5em;
+}
+
+#banner a { color: #f7e6c1; text-decoration: none; }
+#banner a:hover { color: #ffb15e; text-decoration: bold; }
+#banner a:visited { color: #f7e6c1; text-decoration: none; }
+#banner #subtitle { font-size: 0.5em; }
+
+#about_side {
+	width: 80%;
+	margin: 0 auto;
+	text-align: left;
+	color: white;
+	font-size: 0.7em;
+}
+
+#menu {
+	width: 20%;
+	height: 100%;
+	
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #2e2f3b;
+	padding: 0.25em;
+	color: #f7e6c1;
+	text-transform: uppercase;
+	font-family: 'Roboto Condensed', Helvetica, sans-serif;
+	font-size: 1em;
+}
+
+#menu ul {
+	list-style-type: none;
+}
+#menu li {
+    display: block;
+}
+
+#menu a    { color: #ffb15e; text-decoration: none; }
+#menu a:hover   { color: #f7e6c1;  }
+
+#wrapper {
+	margin-left: 20%; /* Same as the width of the sidenav */
+	color: black;
+	background-color: white;
+	padding: 1em 2em 2em 2em;
+}
+
+#wrapper a    { color: #632166; text-decoration: none;      }
+#wrapper a:hover   { text-decoration: none; }
+#wrapper a:visited  { text-decoration: none; }
+
+#main_block {
+	overflow-y: scroll;
+}
+
+#main_block a { color: #ffb15e; }
+
+h1 a { color: #211a47 !important}
+h2 a { color: #211a47 !important }
+h3 a { color: #211a47 !important }
+h4 a { color: #211a47 !important }
+h5 a { color: #211a47 !important }
+h6 a { color: #211a47 !important }
+
+#footer_block {
+	text-align:center;
+	font-size: 0.6em;
+	position: absolute;
+	bottom: 10px;
+	color: white;
+	padding: 1em;
+	padding: 0.5em 1em 0.5em 1em;
+}
+
+#post-list {
+    margin-bottom: 1em;
+    margin-top: 1em;
+    padding: 0;
+	list-style-type: none;
+}
+
+#post-list li {
+	padding-left: 1em;
+	border-left: 1px solid gray;
+}
+
+pre {
+    margin-left: 5%;
+}
+
+code {
+	font-weight: bold;
+}
+
+.highlight {
+	margin-left: 1%;
+	border-left: 1px solid orange;
+	color: black;
+}
+
+.c1 {
+	color:darkcyan;
+	font-style: italic;
+}
+
+.sb {
+	color: darkred;
+	font-weight: bold;
+}
+
+.code_highlight2 {
+	color: red;
+}
+
+img[alt$="center"] {
+	display:block;
+	margin: 0 auto;
+	max-width: 80%;
+	height: auto;
+}
+
+.kd {
+	font-weight: bold;
+}
+
+.nb,.nt {
+	color:purple;
+	font-weight: bold;
+}
+
+.n, .nv,.nx {
+	color:darkgreen;
+	font-weight: bold;
+}
+
+
+.ch {
+	font-style: italic;
+	color:gray;
+}
+.s2 {
+	color: darkred;
+}
+
+
