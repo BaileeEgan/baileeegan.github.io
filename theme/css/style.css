@@ -29,10 +29,15 @@ body {
 	font-size: 0.7em;
 }
 
+.submenuheader {
+	width: 80%;
+	margin: 0 auto;
+	text-align: left;
+}
+
 #menu {
 	width: 20%;
 	height: 100%;
-	
 	position: fixed;
 	z-index: 1;
 	top: 0;
