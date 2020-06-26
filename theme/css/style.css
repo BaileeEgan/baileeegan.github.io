@@ -141,6 +141,12 @@ img[alt$="center"] {
 	height: auto;
 }
 
+img[alt$="right"] {
+	display:inline-block;
+	float: right;
+	margin: 10px;
+}
+
 img[src*="#preview"] {
 	display:inline-block;
 	margin: 0 auto;
