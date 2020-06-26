@@ -1,208 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>Bailee Egan</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
-        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Atom Feed" />
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
+		
+		<script type="text/javascript" src="/theme/js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="/theme/js/theme.js"></script>
+		
+		<title>Bailee Egan</title>
+		<meta charset="utf-8" />
+		<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Full Atom Feed" />
 </head>
 
 <body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">Bailee Egan </a></h1>
-                <nav><ul>
-                    <li><a href="/pages/about.html">About</a></li>
-                    <li><a href="/pages/research.html">Research</a></li>
-                    <li><a href="/category/tutorials.html">Tutorials</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+		<div id = "menu">
+			<header id="banner" class="body">
+				<a href="/">Bailee Egan</a>
+			</header><!-- /#banner -->
+			<div id = "about_side">
+				Masters Student
+				<br />University of Nebraska-Licoln
+				<br />School of Biological Sciences
+				<p />
+				Email: <i>began2@huskers.unl.edu</i>
+				<p />
+				<a href="https://github.com/BaileeEgan" target="_blank"><img width="20" height="20" src = '/theme/images/GitHub-Mark-Light-32px.png'/></a>
+				<a href="https://twitter.com/bailee_egan" target="_blank"><img width="20" height="20" src = '/theme/images/twitter_logo32px.png'/></a>
+			</div>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/dbrda.html">db-RDA & PCoA Bi-Plots in R</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2019-06-19T00:00:00-05:00">
-                Published: Wed 19 June 2019
-        </abbr>
+			<p class = 'submenuheader'><b>RESEARCH</b></p>
+			<ul>
+						<li><a href="/pages/about/">About</a></li>
+						<li><a href="/pages/research/">Research</a></li>
+						<li><a href="/category/tutorials.html">Tutorials</a></li>
+			</ul>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/bailee-egan.html">Bailee Egan</a>
-        </address>
-<p>In <a href="/category/tutorials.html">Tutorials</a>.</p>
-<p>tags: <a href="/tag/r.html">R</a> </p>
-</footer><!-- /.post-info --><p>Redundancy analysis (RDA) calculates to show the amount of variation within a dataset attributed to a set of explanatory variables. Distance-based RDA (db-RDA) does the same thing, but with variation from a non-euclidean distance-based method (such as Bray-Curtis, Jaccard). It is important to note that RDA and db-RDA assumes a linear relationship between variation and an explanatory variable.</p>
-<p>Here in this tutorial, I will show you two methods of performing db-RDA and generating PCoA Bi-plots in R using ggplots2.</p>
-<h3>Required libraries</h3>
-<p>First, we need to load the following packages. Install them if you do not have them.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">vegan</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
-</code></pre></div>
+			<p class = 'submenuheader'><b>ART</b></p>
+			<ul>
+				<li><a href="/pages/painting/">Painting</a></li>
+				<li><a href="/pages/illustration/">Illustration</a></li>
+			</ul>
 
+			
+			<div class="body" id = "footer_block">
+					<address id="about" class="vcard body">
+					Powered by <a href="http://getpelican.com/">Pelican</a> and <a href="http://python.org">Python</a>.
+					</address><!-- /#about -->
+			</div><!-- /#contentinfo -->
+		</div>
+		<div id = "wrapper">
+			<div id = "main_content">
+<section id="content">
+<h2>All posts</h2>
 
-<h3>Generating bi-plots with the capscale function</h3>
-<p>This first function generates a bi-plot using vegan's <code>capscale</code> function. </p>
-<div class="highlight"><pre><span></span><code><span class="n">gg.capscale</span> <span class="o">=</span> <span class="nf">function </span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s">&quot;bray&quot;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1"># Set explanatory variables as those in table if &#39;by&#39; is not specificed</span>
-  <span class="nf">if </span><span class="p">(</span><span class="nf">is.null</span><span class="p">(</span><span class="n">by</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">by</span><span class="o">=</span><span class="n">table</span>
-  <span class="p">}</span>
+<ul id="post-list">
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="/posts/dbrda/" rel="bookmark" title="Permalink to db-RDA & PCoA Bi-Plots in R">db-RDA & PCoA Bi-Plots in R</a></h2> </header>
+                <footer class="post-info">
+                    <time class="published" datetime="2019-06-19T00:00:00-04:00"> Wed 19 June 2019 </time>
+                    <address class="vcard author">By
+                        <a class="url fn" href="/author/bailee-egan.html">Bailee Egan</a>
+                    </address>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>Generating bi-plots in R with ggplot2</p> </div><!-- /.entry-content -->
+        </article></li>
+        <li><article class="hentry">
+                <header> <h2 class="entry-title"><a href="/posts/bash_for_beginners/" rel="bookmark" title="Permalink to Bash Scripts for Beginners">Bash Scripts for Beginners</a></h2> </header>
+                <footer class="post-info">
+                    <time class="published" datetime="2019-06-12T00:00:00-04:00"> Wed 12 June 2019 </time>
+                    <address class="vcard author">By
+                        <a class="url fn" href="/author/bailee-egan.html">Bailee Egan</a>
+                    </address>
+                </footer><!-- /.post-info -->
+                <div class="entry-content"> <p>How to write bash scripts with variables, loops, if-else, statements, and more</p> </div><!-- /.entry-content -->
+        </article></li>
+</ol><!-- /#posts-list -->
+</section><!-- /#content -->
+			</div>
+		</div>
 
-  <span class="c1"># Run db-RDA with capscale()</span>
-  <span class="c1"># We generate a formula dynamically from the colnames of &#39;by&#39;</span>
-  <span class="n">mod</span><span class="o">=</span><span class="nf">capscale</span><span class="p">(</span><span class="nf">as.formula</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;table~&quot;</span><span class="p">,</span> <span class="nf">paste</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">by</span><span class="p">),</span><span class="n">collapse</span> <span class="o">=</span> <span class="s">&quot;+&quot;</span><span class="p">))),</span> <span class="n">data</span><span class="o">=</span><span class="n">by</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s">&quot;bray&quot;</span><span class="p">)</span>
-  <span class="n">summary</span> <span class="o">=</span> <span class="nf">summary</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span>
+		<div id="modal-box" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="modal-close">&times;</span>
+				<img src = '' />
+			</div>
 
-  <span class="c1"># Run an ANOVA on the explanatory variables to identify the significant ones</span>
-  <span class="n">anv</span> <span class="o">=</span> <span class="nf">anova</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s">&quot;terms&quot;</span><span class="p">)</span>
-
-  <span class="c1"># Select which variables were significant</span>
-  <span class="n">sig_var</span> <span class="o">=</span> <span class="nf">which</span><span class="p">(</span><span class="nf">sapply</span><span class="p">(</span><span class="n">X</span> <span class="o">=</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">summary</span><span class="o">$</span><span class="n">species</span><span class="p">),</span> <span class="nf">function </span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nf">if </span><span class="p">(</span><span class="n">anv</span><span class="o">$</span><span class="n">`Pr(&gt;F)`</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="nf">rownames</span><span class="p">(</span><span class="n">anv</span><span class="p">)</span> <span class="o">==</span> <span class="n">X</span><span class="p">)]</span> <span class="o">&lt;</span> <span class="m">0.05</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nf">return</span><span class="p">(</span><span class="bp">T</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="nf">return</span><span class="p">(</span><span class="bp">F</span><span class="p">)</span>
-  <span class="p">}))</span>
-
-  <span class="c1"># Extract points</span>
-  <span class="n">points</span><span class="o">=</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">summary</span><span class="o">$</span><span class="n">sites</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span> <span class="n">Y</span><span class="o">=</span><span class="n">summary</span><span class="o">$</span><span class="n">sites</span><span class="p">[,</span><span class="m">2</span><span class="p">])</span>
-
-  <span class="c1"># Extract arrows that belong to significant explanatory variables</span>
-  <span class="n">arrows</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">Name</span> <span class="o">=</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">summary</span><span class="o">$</span><span class="n">species</span><span class="p">),</span> <span class="n">X</span><span class="o">=</span><span class="n">summary</span><span class="o">$</span><span class="n">species</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span> <span class="n">Y</span><span class="o">=</span><span class="n">summary</span><span class="o">$</span><span class="n">species</span><span class="p">[,</span><span class="m">2</span><span class="p">])[</span><span class="n">sig_var</span><span class="p">,]</span>
-
-  <span class="c1"># Rescale arrows so that they fit within bounds of the data</span>
-  <span class="n">arrows</span><span class="o">$</span><span class="n">Z</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">arrows</span><span class="o">$</span><span class="n">X</span><span class="o">^</span><span class="m">2</span> <span class="o">+</span> <span class="n">arrows</span><span class="o">$</span><span class="n">Y</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
-  <span class="n">arrows</span><span class="o">$</span><span class="n">X</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">points</span><span class="o">$</span><span class="n">X</span><span class="p">))</span> <span class="o">*</span> <span class="n">arrows</span><span class="o">$</span><span class="n">X</span> <span class="o">/</span> <span class="n">arrows</span><span class="o">$</span><span class="n">Z</span> <span class="o">*</span> <span class="m">0.75</span>
-  <span class="n">arrows</span><span class="o">$</span><span class="n">Y</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">points</span><span class="o">$</span><span class="n">X</span><span class="p">))</span> <span class="o">*</span> <span class="n">arrows</span><span class="o">$</span><span class="n">Y</span> <span class="o">/</span> <span class="n">arrows</span><span class="o">$</span><span class="n">Z</span> <span class="o">*</span> <span class="m">0.75</span>
-
-  <span class="c1"># First plot the points</span>
-  <span class="n">pl</span> <span class="o">=</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Y</span><span class="p">))</span> <span class="o">+</span> 
-    <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">4</span><span class="p">)</span> <span class="o">+</span>
-    <span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">linetype</span><span class="o">=</span><span class="s">&quot;dotted&quot;</span><span class="p">)</span> <span class="o">+</span>
-    <span class="nf">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">linetype</span><span class="o">=</span><span class="s">&quot;dotted&quot;</span><span class="p">)</span>
-
-  <span class="c1"># Then plot the arrows</span>
-  <span class="n">pl</span> <span class="o">=</span> <span class="n">pl</span> <span class="o">+</span> 
-    <span class="nf">geom_segment</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">arrows</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">xend</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">yend</span><span class="o">=</span><span class="n">Y</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">arrow</span><span class="o">=</span><span class="nf">arrow</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="nf">unit</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="s">&quot;npc&quot;</span><span class="p">)))</span> <span class="o">+</span> 
-    <span class="nf">geom_text</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">arrows</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">Name</span><span class="p">,</span> <span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="nf">sign</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span><span class="n">vjust</span><span class="o">=</span><span class="m">0.5</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="nf">sign</span><span class="p">(</span><span class="n">Y</span><span class="p">))),</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">4</span><span class="p">)</span>
-
-  <span class="c1"># Return the plot</span>
-  <span class="nf">return</span><span class="p">(</span><span class="n">pl</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
-
-
-<p>Let's test this out with the iris data.</p>
-<div class="highlight"><pre><span></span><code><span class="nf">data</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span>
-</code></pre></div>
-
-
-<div class="highlight"><pre><span></span><code><span class="nf">gg.capscale</span><span class="p">(</span><span class="n">iris</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">],</span> <span class="n">by</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">])</span>
-</code></pre></div>
-
-
-<p><img alt="center" src="/figures/biplots/gg.capscale-1.png"></p>
-<h3>Generating bi-plots with the envfit function</h3>
-<p>The <code>envfit</code> function within vegan performs a similar function as <code>capscale</code> (however the exact difference I cannot confidently say). The main difference is that <code>envfit</code> will identify explanatory variables that are significantly correlated with variation within an ordination and attach correlation coefficient values to them.</p>
-<div class="highlight"><pre><span></span><code><span class="n">gg.envfit</span> <span class="o">=</span> <span class="nf">function </span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s">&quot;bray&quot;</span><span class="p">,</span> <span class="n">min_r</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1"># Generate PCoA</span>
-  <span class="n">pcoa</span> <span class="o">=</span> <span class="nf">cmdscale</span><span class="p">(</span><span class="nf">vegdist</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="n">dist</span><span class="p">),</span> <span class="n">eig</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
-  <span class="n">points</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">pcoa</span><span class="o">$</span><span class="n">points</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">pcoa</span><span class="o">$</span><span class="n">points</span><span class="p">[,</span><span class="m">2</span><span class="p">])</span>
-
-  <span class="c1"># Set explanatory variables as those within table if there are none</span>
-  <span class="n">fit</span> <span class="o">=</span> <span class="nf">if</span><span class="p">(</span><span class="nf">is.null</span><span class="p">(</span><span class="n">by</span><span class="p">))</span> <span class="n">table</span> <span class="n">else</span> <span class="n">by</span>
-
-  <span class="c1"># Run envfit</span>
-  <span class="n">efit</span> <span class="o">=</span> <span class="nf">envfit</span><span class="p">(</span><span class="n">pcoa</span><span class="p">,</span> <span class="n">fit</span><span class="p">)</span>
-
-  <span class="c1"># We not only filter out non-significant factors but also those with low correlation</span>
-  <span class="n">sig_vars</span> <span class="o">=</span> <span class="nf">intersect</span><span class="p">(</span><span class="nf">which</span><span class="p">(</span><span class="n">efit</span><span class="o">$</span><span class="n">vectors</span><span class="o">$</span><span class="n">pvals</span> <span class="o">&lt;=</span> <span class="m">0.05</span><span class="p">),</span> <span class="nf">which</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">efit</span><span class="o">$</span><span class="n">vectors</span><span class="o">$</span><span class="n">r</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">min_r</span><span class="p">))</span>
-
-  <span class="c1"># Extract arrows, removing</span>
-  <span class="n">arrows</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">Label</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="nf">rownames</span><span class="p">(</span><span class="n">efit</span><span class="o">$</span><span class="n">vectors</span><span class="o">$</span><span class="n">arrows</span><span class="p">),</span> <span class="s">&quot;r=&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">efit</span><span class="o">$</span><span class="n">vectors</span><span class="o">$</span><span class="n">r</span><span class="p">),</span><span class="m">2</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot; &quot;</span><span class="p">),</span> 
-                           <span class="n">X</span> <span class="o">=</span> <span class="n">efit</span><span class="o">$</span><span class="n">vectors</span><span class="o">$</span><span class="n">arrows</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span> 
-                           <span class="n">Y</span> <span class="o">=</span> <span class="n">efit</span><span class="o">$</span><span class="n">vectors</span><span class="o">$</span><span class="n">arrows</span><span class="p">[,</span><span class="m">2</span><span class="p">],</span> 
-                           <span class="n">r</span> <span class="o">=</span> <span class="nf">abs</span><span class="p">(</span><span class="n">efit</span><span class="o">$</span><span class="n">vectors</span><span class="o">$</span><span class="n">r</span><span class="p">))[</span><span class="n">sig_vars</span><span class="p">]</span>
-  <span class="n">arrows</span><span class="o">$</span><span class="n">Z</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">arrows</span><span class="o">$</span><span class="n">X</span><span class="o">^</span><span class="m">2</span> <span class="o">+</span> <span class="n">arrows</span><span class="o">$</span><span class="n">Y</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
-  <span class="n">arrows</span><span class="o">$</span><span class="n">X</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">points</span><span class="o">$</span><span class="n">X</span><span class="p">))</span> <span class="o">*</span> <span class="n">arrows</span><span class="o">$</span><span class="n">X</span> <span class="o">/</span> <span class="n">arrows</span><span class="o">$</span><span class="n">Z</span> <span class="o">*</span> <span class="m">0.5</span>
-  <span class="n">arrows</span><span class="o">$</span><span class="n">Y</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">points</span><span class="o">$</span><span class="n">X</span><span class="p">))</span> <span class="o">*</span> <span class="n">arrows</span><span class="o">$</span><span class="n">Y</span> <span class="o">/</span> <span class="n">arrows</span><span class="o">$</span><span class="n">Z</span> <span class="o">*</span> <span class="m">0.5</span>
-
-  <span class="c1"># Plot points</span>
-  <span class="n">pl</span> <span class="o">=</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">4</span><span class="p">)</span> <span class="o">+</span>
-    <span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">linetype</span><span class="o">=</span><span class="s">&quot;dotted&quot;</span><span class="p">)</span> <span class="o">+</span> 
-    <span class="nf">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">linetype</span><span class="o">=</span><span class="s">&quot;dotted&quot;</span><span class="p">)</span>
-
-  <span class="c1"># Plot arrows</span>
-  <span class="n">pl</span> <span class="o">=</span> <span class="n">pl</span> <span class="o">+</span> 
-    <span class="nf">geom_segment</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">arrows</span><span class="p">,</span> <span class="n">mapping</span><span class="o">=</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">xend</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">yend</span><span class="o">=</span><span class="n">Y</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">arrow</span><span class="o">=</span><span class="nf">arrow</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="nf">unit</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="s">&quot;npc&quot;</span><span class="p">)))</span> <span class="o">+</span> 
-    <span class="nf">geom_text</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">arrows</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">Label</span><span class="p">,</span> <span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="nf">sign</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span><span class="n">vjust</span><span class="o">=</span><span class="m">0.5</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="nf">sign</span><span class="p">(</span><span class="n">Y</span><span class="p">))),</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">4</span><span class="p">)</span>
-
-  <span class="nf">return</span><span class="p">(</span><span class="n">pl</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
-
-
-<div class="highlight"><pre><span></span><code><span class="nf">gg.envfit</span><span class="p">(</span><span class="n">iris</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">])</span>
-</code></pre></div>
-
-
-<p><img alt="center" src="/figures/biplots/gg.envfit-1.png"></p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/bash_for_beginners.html" rel="bookmark"
-                           title="Permalink to Bash Scripts for Beginners">Bash Scripts for Beginners</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2019-06-12T00:00:00-05:00">
-                Published: Wed 12 June 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/bailee-egan.html">Bailee Egan</a>
-        </address>
-<p>In <a href="/category/tutorials.html">Tutorials</a>.</p>
-<p>tags: <a href="/tag/bash.html">bash</a> </p>
-</footer><!-- /.post-info -->                <p>How to write bash scripts with variables, loops, if-else, statements, and more</p>
-                <a class="readmore" href="/bash_for_beginners.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-                </section><!-- /#content -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+		</div>
 
 </body>
+
 </html>
