@@ -150,11 +150,11 @@ img[alt$="right"] {
 img[src*="#preview"] {
 	display:inline-block;
 	margin: 0 auto;
-	max-height: 200px;
+	max-height: 256px;
 	width: auto;
 }
 
-
+/* Source: W3 schools */
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
