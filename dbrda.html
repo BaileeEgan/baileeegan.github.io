@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>Bailee Egan - R</title>
+        <title>db-RDA & PCoA Bi-Plots in R</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
         <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Atom Feed" />
 </head>
@@ -13,13 +13,18 @@
                 <nav><ul>
                     <li><a href="/pages/about.html">About</a></li>
                     <li><a href="/pages/research.html">Research</a></li>
-                    <li><a href="/category/tutorials.html">Tutorials</a></li>
+                    <li class="active"><a href="/category/tutorials.html">Tutorials</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/dbrda.html" rel="bookmark"
+           title="Permalink to db-RDA & PCoA Bi-Plots in R">db-RDA & PCoA Bi-Plots in R</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/dbrda.html">db-RDA & PCoA Bi-Plots in R</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2019-06-19T00:00:00-05:00">
                 Published: Wed 19 June 2019
@@ -30,7 +35,7 @@
         </address>
 <p>In <a href="/category/tutorials.html">Tutorials</a>.</p>
 <p>tags: <a href="/tag/r.html">R</a> </p>
-</footer><!-- /.post-info --><p>Redundancy analysis (RDA) calculates to show the amount of variation within a dataset attributed to a set of explanatory variables. Distance-based RDA (db-RDA) does the same thing, but with variation from a non-euclidean distance-based method (such as Bray-Curtis, Jaccard). It is important to note that RDA and db-RDA assumes a linear relationship between variation and an explanatory variable.</p>
+</footer><!-- /.post-info -->      <p>Redundancy analysis (RDA) calculates to show the amount of variation within a dataset attributed to a set of explanatory variables. Distance-based RDA (db-RDA) does the same thing, but with variation from a non-euclidean distance-based method (such as Bray-Curtis, Jaccard). It is important to note that RDA and db-RDA assumes a linear relationship between variation and an explanatory variable.</p>
 <p>Here in this tutorial, I will show you two methods of performing db-RDA and generating PCoA Bi-plots in R using ggplots2.</p>
 <h3>Required libraries</h3>
 <p>First, we need to load the following packages. Install them if you do not have them.</p>
@@ -145,8 +150,11 @@
 </code></pre></div>
 
 
-<p><img alt="center" src="/figures/biplots/gg.envfit-1.png"></p>                </article>
-            </aside><!-- /#featured -->
+<p><img alt="center" src="/figures/biplots/gg.envfit-1.png"></p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
