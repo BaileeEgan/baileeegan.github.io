@@ -279,8 +279,9 @@ var update_mismatch_statuses = function () {
 
 
 var import_sequences = function () {
-  var raw_text = $("#input_aln").val()
+	var raw_text = $("#input_aln").val()
 	parse_fasta(raw_text.split("\n"))
+	alert(records.length)
 }
 
 // Note that n is the position in the sequence, not the array
