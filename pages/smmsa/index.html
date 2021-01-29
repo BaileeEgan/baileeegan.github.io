@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
+		
+		<script type="text/javascript" src="/theme/js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="/theme/js/theme.js"></script>
+		
+		<title>Bailee Egan - SMMSA</title>
+		<meta charset="utf-8" />
+		<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Full Atom Feed" />
+
+
+</head>
+
+<body id="index" class="home">
+		<div id = "menu">
+			<header id="banner" class="body">
+				<a href="/">Bailee Egan</a>
+			</header><!-- /#banner -->
+			<div id = "about_side">
+				Masters Student
+				<br />University of Nebraska-Licoln
+				<br />School of Biological Sciences
+				<p />
+				Email: <i>began2@huskers.unl.edu</i>
+				<p />
+				<a href="https://github.com/BaileeEgan" target="_blank"><img width="20" height="20" src = '/theme/images/GitHub-Mark-Light-32px.png'/></a>
+				<a href="https://twitter.com/bailee_egan" target="_blank"><img width="20" height="20" src = '/theme/images/twitter_logo32px.png'/></a>
+			</div>
+
+			<p class = 'submenuheader'><b>RESEARCH</b></p>
+			<ul>
+						<li><a href="/pages/about/">About</a></li>
+						<li><a href="/pages/research/">Research</a></li>
+						<li class="active"><a href="/pages/smmsa/">SMMSA</a></li>
+						<li><a href="/category/tutorials.html">Tutorials</a></li>
+			</ul>
+
+			<p class = 'submenuheader'><b>ART</b></p>
+			<ul>
+				<li><a href="/pages/painting/">Painting</a></li>
+				<li><a href="/pages/illustration/">Illustration</a></li>
+			</ul>
+
+			
+			<div class="body" id = "footer_block">
+					<address id="about" class="vcard body">
+					Powered by <a href="http://getpelican.com/">Pelican</a> and <a href="http://python.org">Python</a>.
+					</address><!-- /#about -->
+			</div><!-- /#contentinfo -->
+		</div>
+		<div id = "wrapper">
+			<div id = "main_content">
+    <h1>SMMSA</h1>
+    
+
+    
+	<h1>SMMSA</h1>
+	<h3><i>\(>A<)/</i>  See My MSA! </h3>
+	<div>
+		<h3>Instructions</h3>
+		SMMSA is a quick and easy tool for visualizing and formatting multiple sequence alignments. Because it runs in browser, it cannot handle very long sequences or too many 
+sequences. 
+		<p />
+		<ul>
+			<li>Upload or paste aligned FASTA. The sequence type is automatically chosen, but check just in case. </li>
+			<li>Increase the <b>Alignment Width</b> for longer lines.</li>
+			<li>Change colors by CSS color names or HEX codes.</li>
+			<li>Enable semimatches for additional coloring for transition mutations or mutations of similar amino acids.</li>
+			<li>The <b>Reference #</b> is used to compare other sequences against a selected reference. For example, input <b>0</b> if you want to compare all sequences 
+against the first.</li>
+			<li>Click on sequence names in the output alignment to change them.</li>
+			<li>The <b>Detail View</b> gives details on sequence lengths, number of mismatches, and number of semimatches.</li>
+			<li>The output can be pasted as formatted text into a Word document, or other rich-text application.</li>
+		</ul>
+		
+	</div>
+	<table><tbody>
+		<tr>
+			<td>
+				<textarea id="input_aln" cols="100" rows="10">
+>Seq1
+ATGGAAATAAAAGACCTGGCAGATTTATATGGCGACGAACTTAAATTAACAAAACTGATC
+AGAAAAAGCTCGGCACGT-----------------------------GCTCAGGAAATTG
+>Seq2
+GGATGGGGAGTAGCAAGGGAGGTGTGCGATTATAAAAATGCGTGGGGGACTTTCCAGCTG
+CATTATTATAAAGTTACTCTGGCAGATTTATATGGCGACGAACTT--GGTCAAAATTTGC
+				</textarea>
+			</td>
+			<td>
+				<input id="upload_file" type="file" />
+			</td>
+	</tbody></table>
+	<p />
+	<form>
+		Sequence Type: 
+		<input type="radio" name="sequence_type" value="nucleotide" checked />
+		<label for="nucleotide">Nucleotide</label>
+		<input type="radio" name="sequence_type" value="protein" />
+		<label for="protein">Protein</label><br>
+		
+		<span id="settings_width_label">Alignment Width: </span>
+		<input id="settings_width" type="text" value="50" />
+		<br />
+
+		<span id="settings_show_conservation_label">Show conservation: </span>
+		<input type="checkbox" id="settings_show_conservation" checked>
+		<br />
+
+		<span id="settings_color_by_label">Color by: </span>
+		<select id="settings_color_by">
+			<option value="IDENTITY">Identity</option>
+			<option value="MISMATCH">Mismatch</option>
+		</select>
+		<br />
+
+
+		Allow semimatches <input class="check_setting" type="checkbox" id="settings_allow_semimatches" value="" checked> 
+		<br />
+
+
+		
+		<div id="mismatch_settings">
+			<span id="settings_match_color_label">Match color: </span>
+			<input id="settings_match_color" type="text" class="color_setting" value="red" />
+			<br />
+			<span id="settings_match_highlight_label">Match highlight: </span>
+			<input id="settings_match_highlight" type="text" class="color_setting" value="none" />
+			<br />
+
+			<span id="settings_mismatch_color_label">Mismatch color: </span>
+			<input id="settings_mismatch_color" type="text" class="color_setting" value="red" />
+			<br />
+			<span id="settings_mismatch_highlight_label">Mismatch highlight: </span>
+			<input id="settings_mismatch_highlight" type="text" class="color_setting" value="none" />
+			<br />
+		</div>
+
+		<div id="semimatch_settings">
+			<span id="settings_semimatch_color_label">Semi-match color: </span>
+			<input id="settings_semimatch_color" type="text" class="color_setting" value="brown" />
+			<br />
+			<span id="settings_semimatch_highlight_label">Semi-match highlight: </span>
+			<input id="settings_semimatch_highlight" type="text" class="color_setting" value="none" />
+		</div>
+		Reference #: <input id="settings_reference_id" type="text" value="" /> (Compares mismatches to the reference sequence)
+	</form>
+	<button id="detail_view_button">Detail View</button>
+	<div id="detail_view">
+		<table><tbody></tbody></table>
+	</div>
+	<p />
+
+	<div id="output_aln"></div>
+
+
+			</div>
+		</div>
+
+		<div id="modal-box" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="modal-close">&times;</span>
+				<img src = '' />
+			</div>
+
+		</div>
+
+</body>
+
+</html>
