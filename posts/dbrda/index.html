@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="/theme/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="https://baileeegan.github.io/theme/css/style.css" />
 		
-		<script type="text/javascript" src="/theme/js/jquery-3.4.1.min.js"></script>
-		<script type="text/javascript" src="/theme/js/theme.js"></script>
+		<script type="text/javascript" src="https://baileeegan.github.io/theme/js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="https://baileeegan.github.io/theme/js/theme.js"></script>
 		
 		<title>Bailee Egan - db-RDA & PCoA Bi-Plots in R</title>
 		<meta charset="utf-8" />
-		<link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Full Atom Feed" />
-		<link href="/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Categories Atom Feed" />
+		<link href="https://baileeegan.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Full Atom Feed" />
+		<link href="https://baileeegan.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Categories Atom Feed" />
 
 
 
@@ -22,7 +22,7 @@
 <body id="index" class="home">
 		<div id = "menu">
 			<header id="banner" class="body">
-				<a href="/">Bailee Egan</a>
+				<a href="https://baileeegan.github.io/">Bailee Egan</a>
 			</header><!-- /#banner -->
 			<div id = "about_side">
 				Masters Student
@@ -31,22 +31,22 @@
 				<p />
 				Email: <i>began2@huskers.unl.edu</i>
 				<p />
-				<a href="https://github.com/BaileeEgan" target="_blank"><img width="20" height="20" src = '/theme/images/GitHub-Mark-Light-32px.png'/></a>
-				<a href="https://twitter.com/bailee_egan" target="_blank"><img width="20" height="20" src = '/theme/images/twitter_logo32px.png'/></a>
+				<a href="https://github.com/BaileeEgan" target="_blank"><img width="20" height="20" src = 'https://baileeegan.github.io/theme/images/GitHub-Mark-Light-32px.png'/></a>
+				<a href="" target="_blank"><img width="20" height="20" src = 'https://baileeegan.github.io/theme/images/twitter_logo32px.png'/></a>
 			</div>
 
 			<p class = 'submenuheader'><b>RESEARCH</b></p>
 			<ul>
-						<li><a href="/pages/about/">About</a></li>
-						<li><a href="/pages/research/">Research</a></li>
-						<li><a href="/pages/smmsa/">SMMSA</a></li>
-						<li class="active"><a href="/category/tutorials.html">Tutorials</a></li>
+						<li><a href="https://baileeegan.github.io/pages/about/">About</a></li>
+						<li><a href="https://baileeegan.github.io/pages/research/">Research</a></li>
+						<li><a href="https://baileeegan.github.io/pages/smmsa/">SMMSA</a></li>
+						<li class="active"><a href="https://baileeegan.github.io/category/tutorials.html">Tutorials</a></li>
 			</ul>
 
 			<p class = 'submenuheader'><b>ART</b></p>
 			<ul>
-				<li><a href="/pages/painting/">Painting</a></li>
-				<li><a href="/pages/illustration/">Illustration</a></li>
+				<li><a href="https://baileeegan.github.io/pages/painting/">Painting</a></li>
+				<li><a href="https://baileeegan.github.io/pages/illustration/">Illustration</a></li>
 			</ul>
 
 			
@@ -61,7 +61,7 @@
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="/posts/dbrda/" rel="bookmark"
+      <a href="https://baileeegan.github.io/posts/dbrda/" rel="bookmark"
          title="Permalink to db-RDA & PCoA Bi-Plots in R">db-RDA & PCoA Bi-Plots in R</a></h2>
  
   </header>
@@ -70,14 +70,14 @@
       Wed 19 June 2019
     </time>
     <address class="vcard author">
-      By           <a class="url fn" href="/author/bailee-egan.html">Bailee Egan</a>
+      By           <a class="url fn" href="https://baileeegan.github.io/author/bailee-egan.html">Bailee Egan</a>
     </address>
     <div class="category">
-        Category: <a href="/category/tutorials.html">Tutorials</a>
+        Category: <a href="https://baileeegan.github.io/category/tutorials.html">Tutorials</a>
     </div>
     <div class="tags">
         Tags:
-            <a href="/tag/r.html">R</a>
+            <a href="https://baileeegan.github.io/tag/r.html">R</a>
     </div>
   </footer><!-- /.post-info -->
   <div class="entry-content">
@@ -88,7 +88,6 @@
 <div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">vegan</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
 </code></pre></div>
-
 
 <h3>Generating bi-plots with the capscale function</h3>
 <p>This first function generates a bi-plot using vegan's <code>capscale</code> function. </p>
@@ -141,17 +140,14 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>Let's test this out with the iris data.</p>
 <div class="highlight"><pre><span></span><code><span class="nf">data</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span>
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code><span class="nf">gg.capscale</span><span class="p">(</span><span class="n">iris</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">],</span> <span class="n">by</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">])</span>
 </code></pre></div>
 
-
-<p><img alt="center" src="/figures/biplots/gg.capscale-1.png"></p>
+<p><img alt="center" src="https://baileeegan.github.io/figures/biplots/gg.capscale-1.png"></p>
 <h3>Generating bi-plots with the envfit function</h3>
 <p>The <code>envfit</code> function within vegan performs a similar function as <code>capscale</code> (however the exact difference I cannot confidently say). The main difference is that <code>envfit</code> will identify explanatory variables that are significantly correlated with variation within an ordination and attach correlation coefficient values to them.</p>
 <div class="highlight"><pre><span></span><code><span class="n">gg.envfit</span> <span class="o">=</span> <span class="nf">function </span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s">&quot;bray&quot;</span><span class="p">,</span> <span class="n">min_r</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span> <span class="p">{</span>
@@ -191,12 +187,10 @@
 <span class="p">}</span>
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code><span class="nf">gg.envfit</span><span class="p">(</span><span class="n">iris</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">])</span>
 </code></pre></div>
 
-
-<p><img alt="center" src="/figures/biplots/gg.envfit-1.png"></p>
+<p><img alt="center" src="https://baileeegan.github.io/figures/biplots/gg.envfit-1.png"></p>
   </div><!-- /.entry-content -->
 </section>
 			</div>

@@ -86,7 +86,8 @@ const PAM70 = [
 
 const ColorCode = {
 	"IDENTITY": 0,
-	"MISMATCH": 1
+	"MISMATCH": 1,
+	"SEARCH": 2
 }
 
 var getPAM70 = function (A1, A2) {
@@ -135,14 +136,14 @@ class Record {
     this.id = ""
     this.seq = []
     this.frame = 1
-		this.nuc_pos = []
-		this.prot_pos = []
-		this.mismatch_status = []
+	this.nuc_pos = []
+	this.prot_pos = []
+	this.mismatch_status = []
+	this.search_status = [] // 2D array
   }
 	
 	format_seq = function (start, end) {
 		end = Math.min(this.seq.length, end)
-		var mismatches = this.mismatch_status.slice(start, end)
 		var seq = this.seq.slice(start, end)
 		var str = ""
 		
@@ -163,6 +164,7 @@ class Record {
 		}
 
 		else if (settings.color_by == ColorCode.MISMATCH) {
+			var mismatches = this.mismatch_status.slice(start, end)
 			for (var i = 0; i < seq.length; i++) {
 				if (mismatches[i] == 1) {
 					str += "<span style = 'color: " + settings.mismatch_color + "; background-color: " + settings.mismatch_highlight + "'>" + seq[i] + "</span>"
@@ -175,6 +177,23 @@ class Record {
 				}
 				else {
 					str += seq[i]
+				}
+			}
+		}
+
+		else if (settings.color_by == ColorCode.SEARCH) {
+			var searches = this.search_status.slice(start, end)
+			for (var i = 0; i < seq.length; i++) {
+				if (seq[i] == "-") {
+					str += "<span style = 'color: black; background-color: none;'>" + seq[i] + "</span>"
+				}
+				else {
+					if (searches[i] == 0) {
+						str += "<span style = 'color: " + "black" + "; background-color: " + "white" + "'>" + seq[i] + "</span>"
+					}
+					else {
+						str += "<span style = 'color: " + "black" + "; background-color: " + "yellow" + "'>" + seq[i] + "</span>"
+					}
 				}
 			}
 		}
@@ -213,6 +232,30 @@ class Record {
 		}
 		// Trim start_pos at front
 		return [start_pos, end_pos]
+	}
+
+	search_sequence = function (sequence) {
+		this.search_status = []
+		var matched_positions = []
+		var c = 0
+		for (var i = 0; i < this.seq.length; i++) {
+			var character = this.seq[i]
+			this.search_status.push(0)
+
+			if (character == sequence.charAt(c)) {
+				matched_positions.push(i)
+			}
+			else {
+				if (matched_positions.length == sequence.length) {
+					for (var n = 0; n < matched_positions.length; n++) {
+						this.search_status[matched_positions[n]] = 1
+					}
+				}
+				else {
+					matched_positions = []
+				}
+			}
+		}
 	}
 }
 
@@ -620,6 +663,15 @@ $("#settings_reference_id").change(function () {
 			}
 		}
 	}
+})
+
+$("#settings_search").change(function () {
+
+	for (var i = 0; i < records.length; i++) {
+		records[i].search_sequence($(this).val())
+	}
+
+	update()
 })
 
 
