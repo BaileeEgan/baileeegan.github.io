@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../../theme/css/style.css" />
+		
+		<script type="text/javascript" src="../../theme/js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="../../theme/js/theme.js"></script>
+		
+		<title>Bailee Egan - FigTree and ggtrees</title>
+		<meta charset="utf-8" />
+		<link href="https://baileeegan.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Full Atom Feed" />
+		<link href="https://baileeegan.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="R" />
+
+</head>
+
+<body id="index" class="home">
+		<div id = "menu">
+			<header id="banner" class="body">
+				<a href="../../">Bailee Egan</a>
+			</header><!-- /#banner -->
+			<div id = "about_side">
+				Masters Student
+				<br />University of Nebraska-Licoln
+				<br />School of Biological Sciences
+				<p />
+				Email: <i>began2@huskers.unl.edu</i>
+				<p />
+				<a href="https://github.com/BaileeEgan" target="_blank"><img width="20" height="20" src = '../../theme/images/GitHub-Mark-Light-32px.png'/></a>
+				<a href="https://www.linkedin.com/in/bailee-egan-b64a5b220" target="_blank"><img width="20" height="20" src = '../../theme/images/In-White-34.png'/></a>
+			</div>
+
+			<p class = 'submenuheader'><b>RESEARCH</b></p>
+			<ul>
+						<li><a href="../../pages/about/">About</a></li>
+						<li><a href="../../pages/research/">Research</a></li>
+						<li><a href="../../pages/smmsa/">SMMSA</a></li>
+						<li class="active"><a href="../../category/tutorials.html">Tutorials</a></li>
+			</ul>
+
+			
+			<div class="body" id = "footer_block">
+					<address id="about" class="vcard body">
+					Powered by <a href="http://getpelican.com/">Pelican</a> and <a href="http://python.org">Python</a>.
+					</address><!-- /#about -->
+			</div><!-- /#contentinfo -->
+		</div>
+		<div id = "wrapper">
+			<div id = "main_content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="../../posts/figtreeggtree/" rel="bookmark"
+         title="Permalink to FigTree and ggtrees">FigTree and ggtrees</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2022-04-15T00:00:00-04:00">
+      Fri 15 April 2022
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="../../author/bailee-egan.html">Bailee Egan</a>
+    </address>
+    <div class="category">
+        Category: <a href="../../category/tutorials.html">Tutorials</a>
+    </div>
+    <div class="tags">
+        Tags:
+            <a href="../../tag/r.html">R</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <h3>Introduction</h3>
+<p>FigTree is one of my go-to tool for phylogenetic tree visualization, but I've found that I need more control over certain aspects of visualization. Recently, I've used <em>ggtrees</em>, an R package for phylogenetic tree visualization. The upsides are much more control over labels, node tips, and branch colors. The main downside is that nearly everything is done by node index--not a problem for small trees but can be cumbersome for large trees.</p>
+<h3>Goal</h3>
+<p>FigTree provides tree annotation at three levels: node, clade, and tips. My goal was to have these imported as annotations in the tree object. </p>
+<h3>Required libraries</h3>
+<div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggtree</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ape</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">treeio</span><span class="p">)</span>
+</code></pre></div>
+
+<h3>The function: <code>read_figtree()</code></h3>
+<p><code>read.beast()</code>, part of the <code>treeio</code> package, does import node and clade annotations but not tips, so we use this as the base. The tip annotations are stored as a separate part of the FigTree nexus file.</p>
+<p>Each tip annotation is recorded in the following format:
+  TIP_LABEL1[&amp;annotation1="value",!annotation2="value"]
+  TIP_LABEL2[&amp;annotation1="value",!annotation2="value"]</p>
+<p>Quite frankly, I haven't done much rigorous testing to understand why some annotations begin with &amp; or !; however, the overall crux is that annotations can be extracted from each line by string manipulation.</p>
+<div class="highlight"><pre><span></span><code><span class="n">read_figtree</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="c1"># Read in file as tree object</span>
+  <span class="n">tree</span> <span class="o">=</span> <span class="nf">read.beast</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+  <span class="c1"># Empty list to fill with annotations</span>
+  <span class="c1"># This nested list is formatted as list(annotation1 = list(value1=c(tip_label1, tip_label2)))</span>
+  <span class="c1"># Example: </span>
+  <span class="c1">#     list(species=list(Dog=c(&quot;id1&quot;, &quot;id2&quot;), Cat=c(&quot;id3&quot;)),</span>
+  <span class="c1">#           owner=list(Bob=c(&quot;id1&quot;), Alice=c(&quot;id2&quot;, &quot;id3&quot;)))</span>
+
+  <span class="n">taxa_annotations</span> <span class="o">=</span> <span class="nf">list</span><span class="p">()</span>
+
+  <span class="c1"># Read file line-by-line.</span>
+  <span class="c1"># When the line is &quot;taxlabels&quot;, tip annotations start on the next line</span>
+  <span class="c1">#   and stop at &quot;;&quot; or &quot;end;&quot;, where we&#39;ll break the loop</span>
+
+  <span class="n">con</span> <span class="o">=</span> <span class="nf">file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">open</span><span class="o">=</span><span class="s">&quot;r&quot;</span><span class="p">)</span>
+  <span class="n">annotations_started</span> <span class="o">=</span> <span class="kc">FALSE</span>
+  <span class="nf">while </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">line</span> <span class="o">&lt;-</span> <span class="nf">readLines</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="bp">F</span><span class="p">))</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="nf">gsub</span><span class="p">(</span><span class="s">&#39;\t&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span> 
+    <span class="n">line</span> <span class="o">=</span> <span class="nf">gsub</span><span class="p">(</span><span class="s">&#39;\&quot;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+
+    <span class="nf">if </span><span class="p">(</span><span class="n">line</span> <span class="o">==</span> <span class="s">&quot;taxlabels&quot;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">annotations_started</span> <span class="o">=</span> <span class="kc">TRUE</span>
+    <span class="p">}</span>
+    <span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">annotations_started</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">line</span> <span class="o">=</span> <span class="nf">sub</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="s">&quot;[]]$&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span> <span class="c1"># Removes ending bracket</span>
+      <span class="n">cols</span> <span class="o">=</span> <span class="nf">unlist</span><span class="p">(</span><span class="nf">strsplit</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">&quot;[[]&quot;</span><span class="p">))</span> <span class="c1"># Splits at start bracket into tip label and annotations</span>
+      <span class="n">tip_label</span> <span class="o">=</span> <span class="n">cols</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
+      <span class="n">annotations</span> <span class="o">=</span> <span class="nf">unlist</span><span class="p">(</span><span class="nf">strsplit</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="m">2</span><span class="p">],</span> <span class="s">&quot;,&quot;</span><span class="p">))</span>
+
+      <span class="c1"># Loop through annotation strings, extracting the annotation type and value</span>
+      <span class="nf">for </span><span class="p">(</span><span class="n">annotation</span> <span class="n">in</span> <span class="n">annotations</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">annotation_cols</span> <span class="o">=</span> <span class="nf">unlist</span><span class="p">(</span><span class="nf">strsplit</span><span class="p">(</span><span class="n">annotation</span><span class="p">,</span> <span class="s">&quot;=&quot;</span><span class="p">))</span>
+        <span class="n">annotation_type</span> <span class="o">=</span> <span class="nf">gsub</span><span class="p">(</span><span class="s">&quot;[!&amp;]&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">annotation_cols</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
+        <span class="n">annotation_value</span> <span class="o">=</span> <span class="n">annotation_cols</span><span class="p">[</span><span class="m">2</span><span class="p">]</span>
+
+        <span class="nf">if </span><span class="p">(</span><span class="o">!</span> <span class="n">annotation_type</span> <span class="o">%in%</span> <span class="nf">names</span><span class="p">(</span><span class="n">taxa_annotations</span><span class="p">))</span> <span class="p">{</span>
+          <span class="n">taxa_annotations</span><span class="p">[[</span><span class="n">annotation_type</span><span class="p">]]</span> <span class="o">=</span> <span class="nf">list</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="nf">if </span><span class="p">(</span><span class="o">!</span> <span class="n">annotation_value</span> <span class="o">%in%</span> <span class="nf">names</span><span class="p">(</span><span class="n">taxa_annotations</span><span class="p">[[</span><span class="n">annotation_type</span><span class="p">]]))</span> <span class="p">{</span>
+          <span class="n">taxa_annotations</span><span class="p">[[</span><span class="n">annotation_type</span><span class="p">]][[</span><span class="n">annotation_value</span><span class="p">]]</span> <span class="o">=</span> <span class="nf">c</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="n">taxa_annotations</span><span class="p">[[</span><span class="n">annotation_type</span><span class="p">]][[</span><span class="n">annotation_value</span><span class="p">]]</span> <span class="o">=</span> 
+          <span class="nf">c</span><span class="p">(</span><span class="n">taxa_annotations</span><span class="p">[[</span><span class="n">annotation_type</span><span class="p">]][[</span><span class="n">annotation_value</span><span class="p">]],</span> <span class="n">tip_label</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nf">if </span><span class="p">(</span><span class="n">line</span> <span class="o">==</span> <span class="s">&quot;;&quot;</span> <span class="o">||</span> <span class="n">line</span> <span class="o">==</span> <span class="s">&quot;end;&quot;</span><span class="p">)</span> <span class="p">{</span> 
+      <span class="n">break</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nf">close</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+
+  <span class="c1"># For each annotation type (species, owner, etc), we want to annotate the tree object using &#39;groupOTU()&#39;</span>
+  <span class="c1"># However, &#39;groupOTU&#39; needs node IDs, not tip labels.</span>
+  <span class="c1"># We can find the node IDs simply by matching the tip labels with the node ids in the tree object</span>
+
+  <span class="n">tree.tibble</span> <span class="o">=</span> <span class="nf">as_tibble</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="c1"># Tree object converted to data table</span>
+
+  <span class="nf">for </span><span class="p">(</span><span class="n">type</span> <span class="n">in</span> <span class="nf">names</span><span class="p">(</span><span class="n">taxa_annotations</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1"># Initialize list in format of ( annotationValueA = c(nodeID1, nodeID2), annotationValueB = ... )</span>
+    <span class="n">id_annotations</span> <span class="o">=</span> <span class="nf">list</span><span class="p">()</span> 
+    <span class="nf">for </span><span class="p">(</span><span class="n">value</span> <span class="n">in</span> <span class="nf">names</span><span class="p">(</span><span class="n">taxa_annotations</span><span class="p">[[</span><span class="n">type</span><span class="p">]]))</span> <span class="p">{</span>
+      <span class="n">id_annotations</span><span class="p">[[</span><span class="n">value</span><span class="p">]]</span> <span class="o">=</span> <span class="n">tree.tibble</span><span class="o">$</span><span class="n">node</span><span class="p">[</span><span class="n">tree.tibble</span><span class="o">$</span><span class="n">label</span> <span class="o">%in%</span> <span class="n">taxa_annotations</span><span class="p">[[</span><span class="n">type</span><span class="p">]][[</span><span class="n">value</span><span class="p">]]]</span>
+    <span class="p">}</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="nf">groupOTU</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">id_annotations</span><span class="p">,</span> <span class="n">type</span><span class="p">)</span>
+  <span class="p">}</span>
+
+  <span class="nf">return</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+  </div><!-- /.entry-content -->
+</section>
+			</div>
+		</div>
+
+		<div id="modal-box" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="modal-close">&times;</span>
+				<img src = '' />
+			</div>
+
+		</div>
+
+</body>
+
+</html>

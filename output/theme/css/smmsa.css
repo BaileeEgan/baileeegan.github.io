@@ -1,0 +1,24 @@
+#output_aln {
+  border: 1px solid black;
+  width: 100%;
+  overflow: scroll;
+  padding:10px;
+
+}
+
+table {
+	width: 100%;
+}
+td {
+	padding: 10px;
+	text-align: center;
+	v-align: center;
+}
+.mismatch {
+	color: red;
+	background-color: #FFFF00;
+}
+
+#detail_view {
+	display: none;
+}

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../../theme/css/style.css" />
+		
+		<script type="text/javascript" src="../../theme/js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="../../theme/js/theme.js"></script>
+		
+		<title>Bailee Egan - Histogram with custom binning</title>
+		<meta charset="utf-8" />
+		<link href="https://baileeegan.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Full Atom Feed" />
+		<link href="https://baileeegan.github.io/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Bailee Egan Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="R" />
+
+</head>
+
+<body id="index" class="home">
+		<div id = "menu">
+			<header id="banner" class="body">
+				<a href="../../">Bailee Egan</a>
+			</header><!-- /#banner -->
+			<div id = "about_side">
+				Masters Student
+				<br />University of Nebraska-Licoln
+				<br />School of Biological Sciences
+				<p />
+				Email: <i>began2@huskers.unl.edu</i>
+				<p />
+				<a href="https://github.com/BaileeEgan" target="_blank"><img width="20" height="20" src = '../../theme/images/GitHub-Mark-Light-32px.png'/></a>
+				<a href="https://www.linkedin.com/in/bailee-egan-b64a5b220" target="_blank"><img width="20" height="20" src = '../../theme/images/In-White-34.png'/></a>
+			</div>
+
+			<p class = 'submenuheader'><b>RESEARCH</b></p>
+			<ul>
+						<li><a href="../../pages/about/">About</a></li>
+						<li><a href="../../pages/research/">Research</a></li>
+						<li><a href="../../pages/smmsa/">SMMSA</a></li>
+						<li class="active"><a href="../../category/tutorials.html">Tutorials</a></li>
+			</ul>
+
+			
+			<div class="body" id = "footer_block">
+					<address id="about" class="vcard body">
+					Powered by <a href="http://getpelican.com/">Pelican</a> and <a href="http://python.org">Python</a>.
+					</address><!-- /#about -->
+			</div><!-- /#contentinfo -->
+		</div>
+		<div id = "wrapper">
+			<div id = "main_content">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="../../posts/customhist/" rel="bookmark"
+         title="Permalink to Histogram with custom binning">Histogram with custom binning</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2022-04-12T00:00:00-04:00">
+      Tue 12 April 2022
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="../../author/bailee-egan.html">Bailee Egan</a>
+    </address>
+    <div class="category">
+        Category: <a href="../../category/tutorials.html">Tutorials</a>
+    </div>
+    <div class="tags">
+        Tags:
+            <a href="../../tag/r.html">R</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <h3>Introduction</h3>
+<p>Histograms are one of the simplest yet effective ways to visual data. In most default histograms, data is divided into evenly spaces bins, but what if you don't want that?</p>
+<p>Take for example, a distribution of exam grades.</p>
+<p><img alt="center" src="../../figures/custom_histograms/unnamed-chunk-1-1.png"></p>
+<p>Perhaps this might not be a totally accurate depiction of most exam grades (highly dependent on the class), but the distribution of grade percentage might not entirely match the distribution of letter grades. What if we're interested in the number of F's, D's, C's, Bs, A's, and A+'s?</p>
+<h3>Required libraries</h3>
+<p>You only need ggplots, which is conveniently included in the tidyverse package.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+</code></pre></div>
+
+<h3>First solution</h3>
+<p>For this example, letter grades are assigned as follows: F: 0-60: D: 60-70, C: 70-80, B: 80-90, A: 90-95, A+: 95-100.</p>
+<p>We can set custom breaks using ggplots <code>geom_histogram()</code> function. </p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">grades</span><span class="p">),</span> <span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_histogram</span><span class="p">(</span><span class="n">breaks</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">60</span><span class="p">,</span><span class="m">70</span><span class="p">,</span><span class="m">80</span><span class="p">,</span><span class="m">90</span><span class="p">,</span><span class="m">95</span><span class="p">,</span><span class="m">100</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">&quot;white&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><img alt="center" src="../../figures/custom_histograms/unnamed-chunk-3-1.png"></p>
+<p>Depending on your goals, this might be fine, but if you want bars of equal width, then you will need to do a bit more coding.</p>
+<h3>On with it</h3>
+<p>We're actually going to make a bar graph disguised as a histogram. For this, we need to create a table in the following format.</p>
+<div class="highlight"><pre><span></span><code>##   Category Count
+## 1     0-60   100
+## 2    60-70   400
+## 3    70-80   380
+## 4      ...   ...
+</code></pre></div>
+
+<p>We'll make a function that can be recycled for different datasets. <code>values</code> is the vector of your numeric data. <code>breaks</code> are the breaks in the histogram. The return value of this function will be the data frame in the format above.</p>
+<div class="highlight"><pre><span></span><code><span class="n">bin</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">breaks</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">categories</span> <span class="o">=</span> <span class="nf">c</span><span class="p">()</span>
+  <span class="n">counts</span> <span class="o">=</span> <span class="nf">c</span><span class="p">()</span>
+
+  <span class="c1"># Main steps:</span>
+  <span class="c1">#  1: Fill out categories</span>
+  <span class="c1">#  2: Assign counts to each category</span>
+
+  <span class="nf">return</span><span class="p">(</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">Category</span> <span class="o">=</span> <span class="n">categories</span><span class="p">,</span> <span class="n">Count</span> <span class="o">=</span> <span class="n">counts</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4>Filling out the categories</h4>
+<p>To fill out the categories, we're just using <code>paste()</code> to concatenate each break value with the next one in the vector, separating the pair of strings by a dash. For each created category, we'll also initialize the count for that category, which is zero.</p>
+<div class="highlight"><pre><span></span><code><span class="n">categories</span> <span class="o">=</span> <span class="nf">c</span><span class="p">()</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="nf">c</span><span class="p">()</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">breaks</span><span class="p">)</span> <span class="o">-</span> <span class="m">1</span><span class="p">))</span> <span class="p">{</span>
+  <span class="n">categories</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="nf">paste</span><span class="p">(</span><span class="n">breaks</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">breaks</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="m">1</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;-&quot;</span><span class="p">))</span>
+  <span class="n">counts</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>After creating the categories, we need them to be factors so that ggplot doesn't mixup the order. Because the categories are created in order, they can be used as the levels.</p>
+<div class="highlight"><pre><span></span><code><span class="n">categories</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">categories</span><span class="p">)</span>
+</code></pre></div>
+
+<h4>Filling out the counts</h4>
+<p>We have our categories. Now we need the counts for each category. We'll loop through each value and then, for each value, loop through the categories -- specifically the upper and lower limit of each category. If the value fits inside the upper and lower limit, then add the count to the corresponding category. </p>
+<div class="highlight"><pre><span></span><code><span class="nf">for </span><span class="p">(</span><span class="n">r</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">values</span><span class="p">))</span> <span class="p">{</span> <span class="c1"># &#39;values&#39; here is the input vector of your data</span>
+  <span class="n">value</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">r</span><span class="p">]</span>
+  <span class="nf">if </span><span class="p">(</span><span class="nf">is.numeric</span><span class="p">(</span><span class="n">value</span><span class="p">))</span> <span class="p">{</span> <span class="c1"># Safety first</span>
+
+    <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">breaks</span><span class="p">)</span> <span class="o">-</span> <span class="m">1</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">lower</span> <span class="o">=</span> <span class="n">breaks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+      <span class="n">upper</span> <span class="o">=</span> <span class="n">breaks</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="m">1</span><span class="p">]</span>
+      <span class="nf">if </span><span class="p">(</span><span class="n">value</span> <span class="o">&gt;=</span> <span class="n">lower</span> <span class="o">&amp;&amp;</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">counts</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="m">1</span><span class="p">]</span> <span class="o">+</span> <span class="m">1</span>
+        <span class="n">break</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Here's the completed function.</p>
+<div class="highlight"><pre><span></span><code><span class="n">bin</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">breaks</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">categories</span> <span class="o">=</span> <span class="nf">c</span><span class="p">()</span>
+  <span class="n">counts</span> <span class="o">=</span> <span class="nf">c</span><span class="p">()</span>
+
+  <span class="c1">### Fill out categories</span>
+
+  <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">breaks</span><span class="p">)</span> <span class="o">-</span> <span class="m">1</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">categories</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="nf">paste</span><span class="p">(</span><span class="n">breaks</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">breaks</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="m">1</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;-&quot;</span><span class="p">))</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="n">categories</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">categories</span><span class="p">)</span>
+
+  <span class="c1">### Assign counts to each category  </span>
+
+  <span class="nf">for </span><span class="p">(</span><span class="n">r</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">values</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">r</span><span class="p">]</span>
+    <span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">value</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">breaks</span><span class="p">)</span> <span class="o">-</span> <span class="m">1</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">lower</span> <span class="o">=</span> <span class="n">breaks</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="m">1</span><span class="p">]</span>
+        <span class="n">upper</span> <span class="o">=</span> <span class="n">breaks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="nf">if </span><span class="p">(</span><span class="n">value</span> <span class="o">&gt;=</span> <span class="n">lower</span> <span class="o">&amp;&amp;</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">upper</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">counts</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="m">1</span><span class="p">]</span> <span class="o">+</span> <span class="m">1</span>
+          <span class="n">break</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1"># Return the data frame</span>
+
+  <span class="nf">return</span><span class="p">(</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">Category</span> <span class="o">=</span> <span class="n">categories</span><span class="p">,</span> <span class="n">Count</span> <span class="o">=</span> <span class="n">counts</span><span class="p">))</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>And here is the output.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">bin</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="n">breaks</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">60</span><span class="p">,</span><span class="m">70</span><span class="p">,</span><span class="m">80</span><span class="p">,</span><span class="m">90</span><span class="p">,</span><span class="m">95</span><span class="p">,</span><span class="m">100</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>##   Category Count
+## 1     0-60    91
+## 2    60-70   369
+## 3    70-80   444
+## 4    80-90    91
+## 5    90-95     5
+## 6   95-100     0
+</code></pre></div>
+
+<p>Finally, we can plot the data as a histogram.</p>
+<div class="highlight"><pre><span></span><code><span class="n">grades.binned</span> <span class="o">=</span> <span class="nf">bin</span><span class="p">(</span><span class="n">grades</span><span class="p">,</span> <span class="n">breaks</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">60</span><span class="p">,</span><span class="m">70</span><span class="p">,</span><span class="m">80</span><span class="p">,</span><span class="m">90</span><span class="p">,</span><span class="m">95</span><span class="p">,</span><span class="m">100</span><span class="p">))</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">grades.binned</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">Category</span><span class="p">,</span> <span class="n">Count</span><span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="s">&quot;identity&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><img alt="center" src="../../figures/custom_histograms/unnamed-chunk-11-1.png"></p>
+<h3>Touching up</h3>
+<p>We can afford to touch up this graph a bit. Change that X-axis title, and you set <code>width=1</code> if you want to remove the space between the bars.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="n">grades.binned</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">Category</span><span class="p">,</span> <span class="n">Count</span><span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="s">&quot;identity&quot;</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">&quot;white&quot;</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;Grade (%)&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><img alt="center" src="../../figures/custom_histograms/unnamed-chunk-12-1.png">
+Go wild if you want.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">ggplot</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="n">grades.binned</span><span class="p">,</span> <span class="n">Letter</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;A+&quot;</span><span class="p">)),</span> <span class="nf">aes</span><span class="p">(</span><span class="n">Category</span><span class="p">,</span> <span class="n">Count</span><span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="s">&quot;identity&quot;</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">&quot;white&quot;</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">geom_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">Letter</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Count</span><span class="m">+20</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="m">8</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;Grade (%)&quot;</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">theme_classic</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="center" src="../../figures/custom_histograms/unnamed-chunk-13-1.png"></p>
+  </div><!-- /.entry-content -->
+</section>
+			</div>
+		</div>
+
+		<div id="modal-box" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="modal-close">&times;</span>
+				<img src = '' />
+			</div>
+
+		</div>
+
+</body>
+
+</html>
