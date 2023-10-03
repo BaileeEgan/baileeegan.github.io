@@ -77,7 +77,7 @@ body {
 
 #main_block a { color: #ffb15e; }
 
-h1 a { color: #211a47 !important}
+h1 a { color: #211a47 !important }
 h2 a { color: #211a47 !important }
 h3 a { color: #211a47 !important }
 h4 a { color: #211a47 !important }
@@ -169,10 +169,101 @@ img[alt$="right"] {
 
 img[src*="#preview"] {
 	display:inline-block;
-	margin: 0 auto;
-	max-height: 256px;
-	width: auto;
+	padding: 5px;
+	margin: 5px;
+	object-fit: cover;
+	width: 200px;
+	height: 200px;
+	box-shadow: 0px 3px 5px lightblue;
 }
+
+.content_table td,th {
+	padding: 15px;
+}
+
+.image_link {
+	opacity: 0.75;
+  position: relative;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	background-size: cover;
+	margin: 2px;
+	box-shadow: 0px 3px 5px lightblue;
+	color: white !important;
+	font-size: 4em !important;
+	text-shadow: 0px 0px 5px black !important;
+}
+
+.image_link:hover {
+	color: darkslategray !important;
+	text-shadow: 0px 0px 15px white !important;
+}
+
+.img_container {
+  position: relative;
+	display: inline-flex;
+  justify-content: center;
+  align-items: center;
+	width: 40%;
+	height: 300px;
+	object-fit: cover;
+	background-size: cover;
+	border: 10px solid white;
+	margin: 5px;
+	box-shadow: 0px 3px 5px lightblue;
+}
+
+.img_container div {
+	opacity: 0;
+	color: white;
+	display: flex;
+  flex-direction: column;
+  padding: 0;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.img_container h3 {
+	position: absolute;
+	z-index: 10;
+	left: 10px;
+	bottom: -30px;
+	font-size: 3em;
+	color: white;
+	text-shadow: 0px 0px 5px black;
+}
+
+.img_container a { color: lightpink !important }
+.img_container a:link { color: lightpink !important }
+.img_container a:visited { color: hotpink !important }
+.img_container a:hover { color: lightsalmon !important }
+.img_container a:active { color: lightsalmon !important }
+
+
+img[src*="#pane"] {
+
+	padding: 5px;
+	margin: 5px;
+	display:inline-block;
+	object-fit: cover;
+	width: 400px;
+	height: 300px;
+	box-shadow: 0px 3px 5px lightblue;
+}
+
+img[src*="#pane"] span {
+	
+}
+
 
 /* Source: W3 schools */
 /* The Modal (background) */
