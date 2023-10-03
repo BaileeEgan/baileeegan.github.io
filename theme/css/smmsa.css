@@ -6,10 +6,10 @@
 
 }
 
-table {
+.centered-table {
 	width: 100%;
 }
-td {
+.centered-table td {
 	padding: 10px;
 	text-align: center;
 	v-align: center;
@@ -22,3 +22,4 @@ td {
 #detail_view {
 	display: none;
 }
+

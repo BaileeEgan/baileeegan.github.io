@@ -25,12 +25,11 @@
 			</header><!-- /#banner -->
 			<div id = "about_side">
 				Bioinformatician
-				<br />M.S. 2022
-				<br />B.S. 2019
 				<p />
 				Email: <i>baileeegan96@gmail.com</i>
 				<p />
 				<a href="https://github.com/BaileeEgan" target="_blank"><img width="20" height="20" src = '../../theme/images/GitHub-Mark-Light-32px.png'/></a>
+				<span style="font-size: 24px;">|</span>
 				<a href="https://www.linkedin.com/in/bailee-egan" target="_blank"><img width="20" height="20" src = '../../theme/images/In-White-34.png'/></a>
 			</div>
 
@@ -56,28 +55,34 @@
     
 	<h3><i>\(>A<)/</i>  See My MSA! </h3>
 	<div>
-		<h3>Instructions</h3>
-		SMMSA is a quick and easy tool for visualizing and formatting multiple sequence alignments. Because it runs in browser, it cannot handle very long sequences or too many 
-sequences. 
-		<p />
-		<ul>
-			<li>Upload or paste aligned FASTA. The sequence type is automatically chosen, but check just in case. </li>
-			<li>Increase the <b>Alignment Width</b> for longer lines.</li>
-			<li>Change colors by CSS color names or HEX codes.</li>
-			<li>Enable semimatches for additional coloring for transition mutations or mutations of similar amino acids.</li>
-			<li>The <b>Reference #</b> is used to compare other sequences against a selected reference. For example, input <b>0</b> if you want to compare all sequences 
-against the first.</li>
-			<li>Click on sequence names in the output alignment to change them.</li>
-			<li>The <b>Detail View</b> gives details on sequence lengths, number of mismatches, and number of semimatches.</li>
-			<li>The output can be pasted as formatted text into a Word document, or other rich-text application.</li>
-		</ul>
+		<h3 class="expand-section">Instructions</h3>
+		<div style="display: none;">
+			SMMSA is a quick and easy tool for visualizing and formatting multiple sequence alignments. Because it runs in browser, it cannot handle very long sequences or too many sequences. 
+			<p />
+			<ul>
+				<li>Upload or paste aligned FASTA. The sequence type is automatically chosen, but check just in case. </li>
+				<li>Increase the <b>Alignment Width</b> for longer lines.</li>
+				<li>Change colors by CSS color names or HEX codes.</li>
+				<li>Enable semimatches for additional coloring for transition mutations or mutations of similar amino acids.</li>
+				<li>The <b>Reference #</b> is used to compare other sequences against a selected reference. For example, input <b>0</b> if you want to compare all sequences 
+	against the first.</li>
+				<li>Click on sequence names in the output alignment to change them.</li>
+				<li>The <b>Detail View</b> gives details on sequence lengths, number of mismatches, and number of semimatches.</li>
+				<li>The output can be pasted as formatted text into a Word document, or other rich-text application.</li>
+			</ul>
+		</div>
+
+		
 		
 	</div>
-	<table><tbody>
+	<table class="centered-table"><tbody>
 		<tr>
 			<td>
-				<textarea id="input_aln" cols="100" rows="10">
-				</textarea>
+				<div>Paste aligned FASTA sequences below, or choose file to upload. </div>
+				<textarea id="input_aln" cols="100" rows="10">>Sequence1
+ATGATTTG
+>Sequence2
+CCTAAGCA</textarea>
 			</td>
 			<td>
 				<input id="upload_file" type="file" />
@@ -89,15 +94,16 @@ against the first.</li>
 		<input type="radio" name="sequence_type" value="nucleotide" checked />
 		<label for="nucleotide">Nucleotide</label>
 		<input type="radio" name="sequence_type" value="protein" />
-		<label for="protein">Protein</label><br>
+		<label for="protein">Protein</label>
+		<p>
 		
 		<span id="settings_width_label">Alignment Width: </span>
 		<input id="settings_width" type="text" value="50" />
-		<br />
+		<p />
 
 		<span id="settings_show_conservation_label">Show conservation: </span>
 		<input type="checkbox" id="settings_show_conservation" checked>
-		<br />
+		<p />
 
 		<span id="settings_color_by_label">Color by: </span>
 		<select id="settings_color_by">
@@ -105,46 +111,94 @@ against the first.</li>
 			<option value="MISMATCH">Mismatch</option>
 			<option value="SEARCH">Search</option>
 		</select>
-		<br />
-
-
-		Allow semimatches <input class="check_setting" type="checkbox" id="settings_allow_semimatches" value="" checked> 
-		<br />
-
-		Search match: <input type="text" id="settings_search" />
-		<br />
+		<p />
 
 
 		
-		<div id="mismatch_settings">
-			<span id="settings_match_color_label">Match color: </span>
-			<input id="settings_match_color" type="text" class="color_setting" value="red" />
-			<br />
-			<span id="settings_match_highlight_label">Match highlight: </span>
-			<input id="settings_match_highlight" type="text" class="color_setting" value="none" />
+		<div id="search_settings" style="display:none; padding-left: 20px;">
+		Search for: <input type="text" id="settings_search" />
+		</div>
+		
+
+		<div id="mismatch_settings" style="padding-left: 20px;">
+
+
+			<div id="reference_settings" style="display: none;">
+				Reference #: <input id="settings_reference_id" type="text" value="" /> (Compares mismatches to the reference sequence)
+			</div>
+			<p />
+
+			Allow semimatches <input class="check_setting" type="checkbox" id="settings_allow_semimatches" value="" checked> 
 			<br />
 
-			<span id="settings_mismatch_color_label">Mismatch color: </span>
-			<input id="settings_mismatch_color" type="text" class="color_setting" value="red" />
+			<h4 class="expand-section">Match colors</h4>
+			<table style="width: 50%; display: none;">
+				<tbody>
+					<tr>
+						<td><span id="settings_match_color_label">Match color: </span></td>
+						<td><input id="settings_match_color" type="text" class="color_setting" value="red" /></td>
+					</tr>
+					<tr>
+						<td><span id="settings_match_highlight_label">Match highlight: </span></td>
+						<td><input id="settings_match_highlight" type="text" class="color_setting" value="none" /></td>
+					</tr>
+					<tr>
+						<td><span id="settings_mismatch_color_label">Mismatch color: </span></td>
+						<td><input id="settings_mismatch_color" type="text" class="color_setting" value="red" /></td>
+					</tr>
+					<tr>
+						<td><span id="settings_mismatch_highlight_label">Mismatch highlight: </span></td>
+						<td><input id="settings_mismatch_highlight" type="text" class="color_setting" value="none" /></td>
+					</tr>
+				</tbody>
+			</table>
+
+
+
+			<!-- <span id = 'settings_match_color_label'>Match color: </span>
+			<input id = "settings_match_color" type = "text" class = "color_setting" value = 'red' />
 			<br />
-			<span id="settings_mismatch_highlight_label">Mismatch highlight: </span>
-			<input id="settings_mismatch_highlight" type="text" class="color_setting" value="none" />
+			<span id = 'settings_match_highlight_label'>Match highlight: </span>
+			<input id = "settings_match_highlight" type = "text"  class = "color_setting" value = 'none' />
 			<br />
+
+			<span id = 'settings_mismatch_color_label'>Mismatch color: </span>
+			<input id = "settings_mismatch_color" type = "text" class = "color_setting" value = 'red' />
+			<br />
+			<span id = 'settings_mismatch_highlight_label'>Mismatch highlight: </span>
+			<input id = "settings_mismatch_highlight" type = "text"  class = "color_setting" value = 'none' />
+			<br /> -->
 		</div>
 
-		<div id="semimatch_settings">
-			<span id="settings_semimatch_color_label">Semi-match color: </span>
-			<input id="settings_semimatch_color" type="text" class="color_setting" value="brown" />
+		<div id="semimatch_settings" style="padding-left: 20px;">
+
+			<h4 class="expand-section">Semi-match colors</h4>
+			<table style="width: 50%; display: none;">
+				<tbody>
+					<tr>
+						<td><span id="settings_semimatch_color_label">Semi-match color: </span></td>
+						<td><input id="settings_semimatch_color" type="text" class="color_setting" value="brown" /></td>
+					</tr>
+					<tr>
+						<td><span id="settings_semimatch_highlight_label">Semi-match highlight: </span></td>
+						<td><input id="settings_semimatch_highlight" type="text" class="color_setting" value="none" /></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!--
+			<span id = 'settings_semimatch_color_label'>Semi-match color: </span>
+			<input id = "settings_semimatch_color" type = "text" class = "color_setting" value = 'brown' />
 			<br />
-			<span id="settings_semimatch_highlight_label">Semi-match highlight: </span>
-			<input id="settings_semimatch_highlight" type="text" class="color_setting" value="none" />
+			<span id = 'settings_semimatch_highlight_label'>Semi-match highlight: </span>
+			<input id = "settings_semimatch_highlight" type = "text"  class = "color_setting" value = 'none' />
+			-->
 		</div>
-		Reference #: <input id="settings_reference_id" type="text" value="" /> (Compares mismatches to the reference sequence)
 	</form>
 
-	<button id="detail_view_button">Detail View</button>
+	<h3 id="detail_view_button" class="expand-section">Detail View</h3>
 	<div id="detail_view">
-		<table><tbody></tbody></table>
+		<table class="centered-table"><tbody></tbody></table>
 	</div>
 	<p />
 

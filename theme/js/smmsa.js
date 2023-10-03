@@ -590,13 +590,24 @@ $("#settings_width").change(function () {
 $("#settings_color_by").change(function () {
 	settings.color_by = ColorCode[$("#settings_color_by option:selected").val()]
 
-	if (settings.color_by == ColorCode.MISMATCH) {
+	if (settings.color_by == ColorCode.SEARCH) {
+		$("#search_settings").show()
+		$("#mismatch_settings").hide()
+		$("#semimatch_settings").hide()
+		$("#reference_settings").hide()
+
+	}
+	else if (settings.color_by == ColorCode.MISMATCH) {
 		$("#mismatch_settings").show()
 		$("#semimatch_settings").show()
+		$("#reference_settings").show()
+		$("#search_settings").hide()
 	}
 	else {
 		$("#mismatch_settings").hide()
 		$("#semimatch_settings").hide()
+		$("#reference_settings").hide()
+		$("#search_settings").hide()
 	}
 
 	update()
@@ -695,7 +706,6 @@ $(document).on("change", "#upload_file", function (event) {
 })
 
 $("#detail_view_button").click(function () {
-	$("#detail_view").toggle()
 	if ($("#detail_view").css("display") != "none") {
 		update_detail_view()
 	}

@@ -19,8 +19,39 @@ $(document).ready(function(){
 	})
 
 	$('.image_link').hover(function() {
-		$(this).animate({ "opacity": "+=1.0" }, "fast" )
+		$(this).animate({ "opacity": "-=0.25" }, "fast" );
 	}, function() {
-		$(this).animate({ "opacity": "-=0.25" }, "fast" )
+		$(this).animate({ "opacity": "+=0.25" }, "slow" );
+	});
+
+
+	$('.expand-section').each(function (elem) {
+		var text = $(this).text()
+		var next = $(this).next()
+		if (next.css("display") == "none") {
+			$(this).html("+ " + text)
+			$(this).css("border-bottom", "none")
+		}
+		else {
+			$(this).html("- " + text)
+			$(this).css("border-bottom", "1px solid black")
+		}
 	})
+
+	$('.expand-section').click(function() {
+		var text = $(this).text()
+		var next = $(this).next()
+		if (next.css("display") == "none") {
+
+			$(this).css("border-bottom", "1px solid black")
+			$(this).html("- " + text.substr(2))
+		}
+		else {
+
+			$(this).css("border-bottom", "none")
+			$(this).html("+ " + text.substr(2))
+		}
+		next.toggle("fast")
+	})
+
 })

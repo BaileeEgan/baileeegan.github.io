@@ -9,6 +9,11 @@ body {
   padding: 0;
 }
 
+.home-content {
+	background: #2e2f3b !important;
+	padding: 64px;
+}
+
 #banner {
 	color: #f7e6c1;
 	display: block;
@@ -177,33 +182,43 @@ img[src*="#preview"] {
 	box-shadow: 0px 3px 5px lightblue;
 }
 
+.centered {
+	display: flex;
+	flex-flow: wrap;
+	flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .content_table td,th {
 	padding: 15px;
 }
 
 .image_link {
-	opacity: 0.75;
+	border-radius: 10px;
+	opacity: 1.0;
   position: relative;
-	display: flex;
-  justify-content: center;
-  align-items: center;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	background-size: cover;
 	margin: 2px;
-	box-shadow: 0px 3px 5px lightblue;
-	color: white !important;
-	font-size: 4em !important;
-	text-shadow: 0px 0px 5px black !important;
+	box-shadow: 0px 3px 5px black;
+	border: 1px solid white;
+	color: #2e2f3b !important;
+	font-size: 5em !important;
+	font-weight: bold;
+	text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white, 0px 1px 5px black;
+	text-decoration: none;
 }
 
 .image_link:hover {
-	color: darkslategray !important;
-	text-shadow: 0px 0px 15px white !important;
+	color: #2e2f3b !important;
+	text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white, 0px 1px 5px black;
 }
 
 .img_container {
+	border-radius: 10px;
   position: relative;
 	display: inline-flex;
   justify-content: center;
@@ -308,5 +323,34 @@ img[src*="#pane"] span {
   cursor: pointer;
 }
 
+.expand-section {
+	padding: 2px;
+	border-bottom: 1px solid black;
+	cursor: pointer;
+}
+
+.expand-section:hover {
+	color: hotpink;
+	background-color: ghostwhite;
+}
+
+.expand-section+div {
+	padding-left: 20px;
+}
+
+.hover-ul {
+	padding-left: 20px;
+	width: 70%;
+}
+
+.hover-ul li {
+	background-color: white;
+	margin-bottom: -1px;
+	padding: 5px;
+}
+
+.hover-ul li:hover {
+	background-color: ghostwhite;
+}
 
 
