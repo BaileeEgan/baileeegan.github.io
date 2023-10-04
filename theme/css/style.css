@@ -3,7 +3,7 @@ html{
 
 body {
   font-family: 'Roboto Condensed', Helvetica, sans-serif;
-  font-size: 100%;
+  font-size: 1em;
   background: white;
   margin: 0;
   padding: 0;
@@ -73,14 +73,19 @@ body {
 #menu a:hover   { color: #f7e6c1;  }
 
 #banner {
-	vertical-align: middle;
+	display: flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	justify-content: center !important;
+  align-items: center;
+  margin: 0;
 	color: #f7e6c1;
-	display: block;
-	font-size: 3vh;
+	font-size: 4vh;
 	text-align: center;
+	height: 100%;
 }
 
-#banner a { vertical-align: middle; color: #f7e6c1; text-decoration: none; }
+#banner a { color: #f7e6c1; text-decoration: none; }
 #banner a:hover { color: #ffb15e; text-decoration: bold; }
 #banner a:visited { color: #f7e6c1; text-decoration: none; }
 #banner #subtitle { font-size: 0.5em; }
@@ -111,8 +116,12 @@ body {
 
 @media screen and (orientation:portrait) {
 
+	body {
+	  font-size: 2vh;
+	}
+
  	#banner {
- 		font-size: 3.5vh;
+ 		font-size: 3vh;
  		text-align: left;
  	}
 
@@ -136,7 +145,7 @@ body {
 	  align-items: center;
 		text-align: left;
 		width: auto;
-		font-size: 2.5vh;
+		font-size: 2vh;
 	}
 
 	.menu-link {
@@ -341,8 +350,7 @@ img[src*="#preview"] {
 	.img_container {
 		flex: 100%;
 		height: 20vh;
-
-  	font-size: 2vh;
+  	font-size: 1.5vh;
 	}
 
 	.img_container h3 {
@@ -439,8 +447,9 @@ img[src*="#pane"] span {
 }
 
 .hover-ul {
-	padding-left: 20px;
-	width: 70%;
+	padding-left: 2vw;
+	padding-right: 2vw;
+	width: 95%;
 }
 
 .hover-ul li {
@@ -454,3 +463,10 @@ img[src*="#pane"] span {
 }
 
 
+@media screen and (orientation:portrait) {
+	.hover-ul {
+		padding-left: 4vw;
+		padding-right: 2vw;
+	}
+
+}

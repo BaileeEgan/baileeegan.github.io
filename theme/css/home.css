@@ -1,3 +1,7 @@
+#flex-group {
+	height: 60vh;
+}
+
 .image-link {
 	display: flex;
 	flex-direction:column;
@@ -37,14 +41,18 @@
 
  @media screen and (orientation:portrait){
 
+ 	#flex-group {
+ 		margin-top: 2.5vh;
+		height: 50vh;
+	}
+
 	.image-link {
-		font-size: 3em !important;
-		height: 20vh;
+		font-size: 2.75em !important;
+		height: 15vh;
 	}
 
   #about-link {
-    height: auto;
-    flex: 1;
+    flex: 0;
     flex-grow: none;
     flex-basis: auto;
   }
@@ -52,6 +60,7 @@
   #blog-link {
 		margin-top: 10px;
 		flex: 1;
+		height: 15vh;
 		font-size: 1.5em !important;
 	}
 
