@@ -3,6 +3,7 @@
 <head>
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="./theme/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="./theme/css/home.css" />
         
         <script type="text/javascript" src="./theme/js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="./theme/js/theme.js"></script>
@@ -18,47 +19,29 @@
         <header id="banner" class="body">
             <a href="./">Bailee Egan</a>
             <span style="color:white">|</span> 
-            <a href="https://github.com/BaileeEgan" target="_blank"><img width="20" height="20" src = './theme/images/GitHub-Mark-Light-32px.png'/></a>
+            <a href="https://github.com/BaileeEgan" target="_blank"><img width="20" height="20" src='./theme/images/GitHub-Mark-Light-32px.png'/></a>
             <span style="color:white">|</span> 
-            <a href="https://www.linkedin.com/in/bailee-egan" target="_blank"><img width="20" height="20" src = './theme/images/In-White-34.png'/></a>
+            <a href="https://www.linkedin.com/in/bailee-egan" target="_blank"><img width="20" height="20" src='./theme/images/In-White-34.png'/></a>
         </header>
     </div>
 
-    <table class='content_table' style = "width:100%; height: 600px;">
-        <tbody>
-            <tr>
+    <div class='flex-col-wrapper' style='height:60vh;'>
 
-                <td rowspan="2" width="40%">
-                    <a class = "image_link centered" style="background-color:white;" href="./pages/about/index.html">
-                        <span class="centered" style="width:100%; text-align: center;">About me</span>
-                        <div class="centered" style="width:96%; font-size:0.25em !important;">I am a bioinformatician who likes to code many things.</div>
-                    </a>
-                </td>
+        <a id="about-link" class="image-link centered" style="background-color:white;" href="./pages/about/index.html">
+            <span class="centered" style="width:100%; text-align: center;">About me</span>
+            <div class="centered" style="width:95%; font-size:0.25em !important;">I am a bioinformatician who likes to code many things.</div>
+        </a>
 
-                <td>
-                    <a class = "image_link centered" style="background-image:url('./images/lil_leveler.png');" href="./pages/projects/index.html">
-                        Projects
-                    </a>
-                </td>
-
-            </tr>
-
-            <tr>
-                <td>
-                    <a class = "image_link centered" style="background-image:url('./art/inside_small.png');" href="./pages/art/index.html">
-                        Art
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <a class = "image_link centered" style="background-image:url('./figures/biplots/gg.envfit-1.png');" href="./author/bailee-egan.html">
-                        Articles, posts, and tutorials
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <a class="image-link centered" style="background-image:url('./images/lil_leveler.png');" href="./pages/projects/index.html">
+            Projects
+        </a>
+        <a class="image-link centered" style="background-image:url('./art/inside_small.png');" href="./pages/art/index.html">
+            Art
+        </a>
+    </div>
+    <a id="blog-link" class="image-link centered" style="background-image:url('./figures/biplots/gg.envfit-1.png');" href="./author/bailee-egan.html">
+        Articles, posts, and tutorials
+    </a>
 
 </body>
 
