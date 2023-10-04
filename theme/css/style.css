@@ -26,13 +26,12 @@ body {
 	color: #f7e6c1;
 	text-transform: uppercase;
 	font-family: 'Roboto Condensed', Helvetica, sans-serif;
-	font-size: 1em;
 }
 
 #menu-wrapper {
 	width: 100%;
 	height: auto;
-	vertical-align: top;
+	vertical-align: middle;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -43,7 +42,7 @@ body {
 
 .menu-flex {
 	margin-top: 5%;
-	margin-left: 5%;
+	margin-left: 0%;
 	margin-bottom: 5%;
 	display: flex;
 	width: 100%;
@@ -52,7 +51,8 @@ body {
   align-items: center;
 	text-align: left;
 	color: white;
-	font-size: 0.7em;
+	font-size: 2vh;
+	height: 5vh;
 }
 
 .menu-link {
@@ -62,7 +62,6 @@ body {
 	border-top: 1px solid white;
 	border-bottom: 1px solid white;
 	justify-content: center !important;
-	font-size: 1em !important;
 	height: 5vh;
 }
 
@@ -74,12 +73,14 @@ body {
 #menu a:hover   { color: #f7e6c1;  }
 
 #banner {
+	vertical-align: middle;
 	color: #f7e6c1;
 	display: block;
-	font-size: 1.5em;
+	font-size: 3vh;
+	text-align: center;
 }
 
-#banner a { color: #f7e6c1; text-decoration: none; }
+#banner a { vertical-align: middle; color: #f7e6c1; text-decoration: none; }
 #banner a:hover { color: #ffb15e; text-decoration: bold; }
 #banner a:visited { color: #f7e6c1; text-decoration: none; }
 #banner #subtitle { font-size: 0.5em; }
@@ -89,7 +90,7 @@ body {
 	margin-top: 10px;
 	position: relative;
 	text-align:left;
-	font-size: 0.6em;
+	font-size: 1.2vh;
 	bottom: 0;
 	color: white;
 }
@@ -108,10 +109,16 @@ body {
 #wrapper a:visited  { text-decoration: none; }
 
 
- @media screen and (orientation:portrait) {
+@media screen and (orientation:portrait) {
+
+ 	#banner {
+ 		font-size: 3.5vh;
+ 		text-align: left;
+ 	}
+
 	#menu {
 		width: 100%;
-		height: 40px;
+		height: 5vh;
 	}
 
 	#menu-wrapper {
@@ -129,6 +136,7 @@ body {
 	  align-items: center;
 		text-align: left;
 		width: auto;
+		font-size: 2.5vh;
 	}
 
 	.menu-link {
@@ -144,10 +152,11 @@ body {
 
 	#wrapper {
 		margin-left: 1%;
-		margin-top: 60px;
+		margin-top: 7.5vh;
 	}
 
 	#footer_block {
+		display: none;
 		margin-top: -10px;
 	}
 }
@@ -293,6 +302,7 @@ img[src*="#preview"] {
 	border: 10px solid white;
 	box-shadow: 0px 3px 5px lightblue;
 	margin: 5px;
+  font-size: 2.5vh;
 }
 
 .img_container div {
@@ -316,7 +326,7 @@ img[src*="#preview"] {
 	z-index: 10;
 	left: 10px;
 	bottom: -30px;
-	font-size: 3em;
+	font-size: 6vh;
 	color: white;
 	text-shadow: 0px 0px 5px black;
 }
@@ -330,7 +340,9 @@ img[src*="#preview"] {
 
 	.img_container {
 		flex: 100%;
-		height: 25vh;
+		height: 20vh;
+
+  	font-size: 2vh;
 	}
 
 	.img_container h3 {
@@ -338,7 +350,7 @@ img[src*="#preview"] {
 		z-index: 10;
 		left: 10px;
 		bottom: -30px;
-		font-size: 2em;
+		font-size: 4vh;
 		color: white;
 		text-shadow: 0px 0px 5px black;
 	}

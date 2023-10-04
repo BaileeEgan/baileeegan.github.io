@@ -39,6 +39,7 @@
 
 	.image-link {
 		font-size: 3em !important;
+		height: 20vh;
 	}
 
   #about-link {
@@ -51,7 +52,6 @@
   #blog-link {
 		margin-top: 10px;
 		flex: 1;
-		height: 20vh;
 		font-size: 1.5em !important;
 	}
 
