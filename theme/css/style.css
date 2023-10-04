@@ -83,6 +83,7 @@ body {
 	font-size: 4vh;
 	text-align: center;
 	height: 100%;
+	padding-top: 5vh;
 }
 
 #banner a { color: #f7e6c1; text-decoration: none; }
@@ -123,6 +124,7 @@ body {
  	#banner {
  		font-size: 3vh;
  		text-align: left;
+ 		padding-top: 0vh;
  	}
 
 	#menu {
@@ -267,6 +269,18 @@ img[src*="#preview"] {
 	height: 20vw;
 	width: 20vw;
 	box-shadow: 0px 3px 5px lightblue;
+  cursor: pointer;
+}
+
+img[src*="#figure"] {
+	display: inline-block;
+	padding: 5px;
+	margin: 5px;
+	object-fit: contain;
+	height: 20vw;
+	width: 40%;
+	box-shadow: 0px 3px 5px lightblue;
+  cursor: pointer;
 }
 
 .flex-col-wrapper {
@@ -405,27 +419,63 @@ img[src*="#pane"] span {
 
 /* Modal Content */
 .modal-content {
+	display: flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	width:100%;
+	position: fixed;
   margin: auto;
   padding: 10px;
   padding-right: 50px;
+  overflow: scroll;
   width: 95vw;
+  height: 95vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .modal-content img {
-	display:block;
+	box-shadow: 0px 1px 5px black;
+	display:flex-inline;
+	flex: 0 0 0;
 	margin: 0 auto;
-	height: 90vh;
+	max-height: 90vh;
+	max-width: 90vw;
 }
+
+
+.modal-caption {
+	background-color: rgba(0, 0, 0, 0.75);
+	border: 1px solid lightgray;
+	padding: 5vh;
+	margin-top: 2vh;
+	color: white;
+	display: flex-inline;
+	flex: 0 0 60%;
+	width: 60vw;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 
 /* The Close Button */
 .modal-close {
-  color: #ebebeb;
+	z-index: 10;
+	position: fixed;
+	text-align: center;
+	top: 10px;
+	right: 10px;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.5);
+  width: 5vh;
+  height: 5vh;
   float: right;
-  font-size: 28px;
+  font-size: 4vh;
   font-weight: bold;
 }
 
-.modal-close:hover,
-.modal-close:focus {
+.modal-close:hover,.modal-close:focus {
   color: #FFFFFF;
   text-decoration: none;
   cursor: pointer;
@@ -467,6 +517,15 @@ img[src*="#pane"] span {
 	.hover-ul {
 		padding-left: 4vw;
 		padding-right: 2vw;
+	}
+
+
+	.modal-caption {
+		margin-top: 1vh;
+		margin-bottom: 4vh;
+		font-size: 1.5vh;
+		width: 90vw;
+		flex: 0 0 95%;
 	}
 
 }

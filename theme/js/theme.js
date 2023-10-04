@@ -1,10 +1,22 @@
 $(document).ready(function(){
+
+
 	$("img").click(function () {
 		var src = $(this).attr('src');
 		var id = $(this).attr('id');
-		if (src.includes("#preview") && $("#modal-box").css("display") == "none") {
+		if ((src.includes("#preview") || src.includes("#figure")) && $("#modal-box").css("display") == "none") {
 			$("#modal-box").css("display", "block")
-			$("#modal-box").find("img").attr("src", src.replace("#preview", ""))
+			$("#modal-box").find("img").attr("src", src.split("#")[0])
+			$(".modal-caption").css("width", $("#modal-box img").css("width"))
+
+			if (typeof $(this).data('caption') !== 'undefined') {
+				$(".modal-caption").show()
+				$(".modal-caption").html($(this).data('caption'))
+			}
+			else {
+				$(".modal-caption").hide()
+			}
+
 		}
 	});
 
