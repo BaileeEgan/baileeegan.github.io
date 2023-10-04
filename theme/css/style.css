@@ -111,7 +111,7 @@ body {
  @media screen and (orientation:portrait) {
 	#menu {
 		width: 100%;
-		height: 7%;
+		height: 40px;
 	}
 
 	#menu-wrapper {
@@ -144,11 +144,11 @@ body {
 
 	#wrapper {
 		margin-left: 1%;
-		margin-top: 7%;
+		margin-top: 60px;
 	}
 
 	#footer_block {
-		margin-top: -2vh;
+		margin-top: -10px;
 	}
 }
 
